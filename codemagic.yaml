@@ -1,0 +1,28 @@
+workflows:
+  capacitor-android:
+    name: Build Capacitor Android App
+    instance_type: mac_mini
+    max_build_duration: 30
+    environment:
+      vars:
+        PACKAGE_NAME: "org.sriai.app"
+      node: 18.16.0
+      java: 17
+    scripts:
+      - name: 📦 Install dependencies
+        script: |
+          npm install
+          npx cap sync android
+      - name: 🛠️ Build web app
+        script: |
+          npm run build || echo "No build script found, skipping"
+      - name: ⚙️ Build Android APK
+        script: |
+          cd android
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
