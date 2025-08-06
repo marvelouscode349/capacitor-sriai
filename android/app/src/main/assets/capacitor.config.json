@@ -1,0 +1,10 @@
+{
+	"appId": "org.sriai.app",
+	"appName": "sriai",
+	"webDir": "dist",
+	"plugins": {
+		"SplashScreen": {
+			"launchAutoHide": false
+		}
+	}
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SRIAI App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script type="module">
+      import OneSignal from 'onesignal-cordova-plugin';
+
+      document.addEventListener('deviceready', () => {
+        OneSignal.setAppId("YOUR_ONESIGNAL_APP_ID");
+
+        OneSignal.promptForPushNotificationsWithUserResponse(response => {
+          console.log("🔔 User response:", response);
+        });
+
+        OneSignal.setNotificationReceivedHandler(notification => {
+          console.log("📩 Notification received:", notification);
+        });
+
+        OneSignal.setNotificationOpenedHandler(openedEvent => {
+          console.log("📬 Notification opened:", openedEvent);
+        });
+      });
+    </script>
+  </head>
+
+  <body style="margin: 0; padding: 0;">
+    <iframe
+      src="https://sriai.org"
+      style="width: 100vw; height: 100vh; border: none;"
+      title="SRIAI"
+    ></iframe>
+  </body>
+</html>
